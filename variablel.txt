@@ -1,0 +1,24 @@
+In cast.csv
+
+Cst_Cnt = Cast Count - All CalCOFI casts ever conducted, consecutively numbered
+Quarter = Quarter of the year
+Distance = Nautical miles from coast intercept, calculated from estimated latitude and longitude
+Bottom_D = Bottom depth in meters
+Barometer = Millibars to the tenths
+Dry_T = Dry Air Temperature from a Sling Psychrometer in degrees Celcius
+Wet_T = Wet Air Temperature from a Sling Psychrometer in degrees Celcius
+
+In bottle.csv
+
+Cst_Cnt = Cast Count - All CalCOFI casts ever conducted, consecutively numbered
+Btl_Cnt = Bottle Count - All CalCOFI bottles ever sampled, consecutively numbered (basically a counter)
+Depthm = Bottle depth in meters
+T_degC = Water temperature in degrees Celsius
+Salnty = Salinity (Practical Salinity Scale 1978)
+O2ml_L = Milliliters oxygen per liter of seawater
+STheta = Potential Density (Sigma Theta), Kg/M³
+O2Sat = Oxygen percent saturation
+Oxy_µmol/Kg = Oxygen micromoles per kilogram seawater
+T_prec = Temperature Precision
+S_prec = Salinity Precision
+

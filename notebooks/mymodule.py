@@ -17,11 +17,13 @@ from sklearn.linear_model import LinearRegression
 from sklearn.pipeline import make_pipeline
 
 
-# --------------------------
-# Data Preparation Functions
-# --------------------------
 def prepare_data(df, features, targets, test_size=0.2, random_state=42):
-    """Prepare data for modeling. Returns X_train, X_test, y_train, y_test"""
+    """
+    Divide dataframe df into feature X and target y, split the data
+    into training and test sets, and Normalize the data.
+    Returns X_train, X_test, y_train, y_test
+    """
+
     X = df[features]
     y = df[targets] 
     
@@ -39,9 +41,6 @@ def prepare_data(df, features, targets, test_size=0.2, random_state=42):
 
     return X_train_scaled, X_test_scaled, y_train, y_test
 
-# ----------------------
-# Visualization Functions
-# ----------------------
 def calculate_metrics(y_true, y_pred):
     """Calculate regression metrics for both temperature and salinity.
     Returns a dictionary with r2, rmse, and mae for each target variable.
@@ -62,9 +61,6 @@ def create_composite_limits(*arrays):
     all_values = np.concatenate(arrays)
     return [all_values.min(), all_values.max()]
 
-# ----------------------
-# Visualization Functions
-# ----------------------
 def plot_density_scatter(ax, y_true, y_pred, metrics, lims, title, target_name):
     """Plot 2D density scatter plot with target-specific metrics and labels."""
     units = {
@@ -101,7 +97,6 @@ def plot_density_scatter(ax, y_true, y_pred, metrics, lims, title, target_name):
         f'MAE = {target_metrics["mae"]:.4f}'))
     ax.text(0.05, 0.90, textstr, transform=ax.transAxes,
            verticalalignment='top', bbox=dict(alpha=0.5))
-
 
 def plot_residuals_hist(ax, residuals, title, target_name):
     """Plot residuals histogram with target-specific units."""
@@ -169,9 +164,6 @@ def create_prediction_figure(y_train, y_pred_train, y_test, y_pred_test, targets
         plt.tight_layout()
         plt.show()
 
-# ----------------------
-# Analysis feature removal
-# ----------------------
 def analyze_feature_cases(df, original_features, cases, targets):
     """Run analysis for all feature cases"""
     results = []
@@ -183,7 +175,7 @@ def analyze_feature_cases(df, original_features, cases, targets):
         X_train, X_test, y_train, y_test = prepare_data(df, current_features, targets)
         
         # # Train model using normal equation
-        beta = np.linalg.inv(X_train.T @ X_train) @ X_train.T @ y_train.values
+        beta = np.linalg.pinv(X_train.T @ X_train) @ X_train.T @ y_train.values
         
         # # Predictions
         y_pred_train = X_train @ beta
@@ -207,19 +199,19 @@ def analyze_feature_cases(df, original_features, cases, targets):
     
     return pd.DataFrame(results)
 
-# Gaussian (RBF) Kernel
 def rbf_kernel(X, Y, gamma=0.1):
+    """Radial Basis Function (RBF) kernel."""
     X_norm = np.sum(X**2, axis=1)[:, np.newaxis]
     Y_norm = np.sum(Y**2, axis=1)[np.newaxis, :]
     dist_sq = X_norm + Y_norm - 2 * np.dot(X, Y.T)
     return np.exp(-gamma * dist_sq)
 
-# Polynomial Kernel
 def polynomial_kernel(X, Y, degree=2, gamma=1, coef0=1):
+    """Polynomial kernel."""
     return (gamma* np.dot(X, Y.T) + coef0) ** degree
 
 def kernel_train_predict(X_train, y_train, X_test, kernel_function, n_components=1000, **kernel_params):
-    """Train/predict using Nyström-approximated kernel."""
+    """Train and predict using Nyström-approximated kernel."""
     # Approximate kernel matrix using landmarks
     nystroem = Nystroem(
         kernel=kernel_function,

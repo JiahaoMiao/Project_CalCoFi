@@ -14,7 +14,7 @@ bottle_df = pd.read_csv("../data/bottle.csv", low_memory=False,encoding="ISO-885
 df = bottle_df.merge(cast_df, on='Cst_Cnt', suffixes=('_bottle', '_cast'))
 print("Dataset loaded successfully!")
 
-# Sezione 3: Info generale
+
 print("\n Dimensions:", df.shape)
 print("\n Columns:")
 print(df.columns.tolist())

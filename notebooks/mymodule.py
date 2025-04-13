@@ -151,16 +151,16 @@ def create_prediction_figure(y_train, y_pred_train, y_test, y_pred_test, targets
         plot_density_scatter(ax1, train_true, train_pred, train_metrics, lims, 'Train Set', target)
         
         ax2 = fig.add_subplot(2, 2, 2)
-        plot_residuals_hist(ax2, res_train, 'Train Set Residuals', target)
+        plot_residuals_hist(ax2, res_train, 'Train Set Error', target)
         
         ax3 = fig.add_subplot(2, 2, 3)
         plot_density_scatter(ax3, test_true, test_pred, test_metrics, lims, 'Test Set', target)
         
         ax4 = fig.add_subplot(2, 2, 4)
-        plot_residuals_hist(ax4, res_test, 'Test Set Residuals', target)
+        plot_residuals_hist(ax4, res_test, 'Test Set Error', target)
         
         plt.subplots_adjust(wspace=0.3, hspace=0.3)
-        fig.suptitle(f'Prediction Diagnostics - {target}', y=1.02, fontsize=14)
+        fig.suptitle(f'Regression Error for {target}', y=1.02, fontsize=14)
         plt.tight_layout()
         plt.show()
 

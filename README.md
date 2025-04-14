@@ -6,13 +6,8 @@ This repository contains my machine learning project for the Machine Learning ex
 
 ## Project Overview
 
-In this project, the **CalCoFi** dataset is explored, followed by the implementation of multiple machine learning models. The primary objectives are:
-- Perform **Exploratory Data Analysis (EDA)** to understand the structure and characteristics of the dataset.
-- Use **linear regression** to predict temperature and salinity based on several features.
-- Explore how the **training set size** impacts the model fit.
-- Tune the model using **grid search** to find optimal hyperparameters for regularized linear regression (Ridge and LASSO).
-- Apply **kernel methods** to improve the model fit and handle non-linearity.
-## Dataset
+In this project, the **CalCoFi** dataset is explored, followed by the implementation of multiple machine learning models. The primary objectives is to use **linear regression** to predict temperature and salinity based on several features.
+
 
 The **CalCoFi** dataset used in this project contains oceanographic data, including measurements of temperature (`T_degC`), salinity (`Salnty`), and various other environmental factors. The dataset is publicly available and can be downloaded from the following links:
 
@@ -66,10 +61,8 @@ To run this project, you will need to install the following Python libraries:
 - `matplotlib`
 - `scikit-learn`
 - `gsw`
-## Results and Discussion
 
-The results and conclusions can be found in the notebooks. Specifically:
-- The effect of training set size on model performance is discussed and visualized.
-- The grid search process for regularized linear regression methods (Ridge and LASSO) is presented, including the optimal hyperparameters.
-- The kernel methods and their impact on the model's ability to fit the data are discussed.
+and at least 16 GB of RAM are required to run calcofi.ipynb due to kernel methods.
 
+calcofi.ipynb takes 3.5 minutes to run on my machine, while
+EDA.ipynb takes 1.5 minutes.
